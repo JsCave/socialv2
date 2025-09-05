@@ -75,7 +75,7 @@ function handleFileChange(e){
 <div>
   <h1>Change Password</h1>
   {successMsg && <p className="bg-green-300 text-green-950">{successMsg}</p>}
-<form className="inline-flex flex-col gap-5 items-center" onSubmit={handleSubmit(handleSubmitPhoto)}>
+<form className="inline-flex flex-col gap-5 items-center" onSubmit={handleSubmit(handleUpdatePassword)}>
 <Input isInvalid={Boolean(errors.password?.message)} errorMessage={errors.password?.message} label="Password" placeholder="Password" type="password" variant="bordered"  {...register('password')}/>
 <Input isInvalid={Boolean(errors.newPassword?.message)} errorMessage={errors.newPassword?.message} label="New Password" placeholder="New Password" type="password" variant="bordered"  {...register('newPassword')}/>
 <Button type='submit' isLoading={isLoading}  color="primary" variant="solid">Change Password</Button>
@@ -84,7 +84,7 @@ function handleFileChange(e){
 
 
   <h1>Upload Profile Photo</h1>
-  <form onSubmit={handleSubmit} className="space-y-4">
+  <form onSubmit={handleSubmitPhoto} className="space-y-4">
   <label className="cursor-pointer text-gray-600 hover:text-blue-600 transition duration-200">
                 <input
                     // onChange={(e) => handleFileChange(e)}
