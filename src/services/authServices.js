@@ -58,7 +58,7 @@ throw e
 export async function changeUserPhotoApi(formData){
     try{
         
-        const {data}=await axios.put(baseUrl + "users/change-password",formData,{
+        const {data}=await axios.put(baseUrl + "users/upload-photo",formData,{
             headers:{
                 token:localStorage.getItem('token')
             }

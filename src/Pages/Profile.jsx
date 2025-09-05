@@ -72,7 +72,7 @@ function handleFileChange(e){
 
     return (
 
-<div>
+<div className='flex flex-col justify-center'>
   <h1>Change Password</h1>
   {successMsg && <p className="bg-green-300 text-green-950">{successMsg}</p>}
 <form className="inline-flex flex-col gap-5 items-center" onSubmit={handleSubmit(handleUpdatePassword)}>
@@ -83,7 +83,6 @@ function handleFileChange(e){
 </form>
 
 
-  <h1>Upload Profile Photo</h1>
   <h1>Upload Profile Photo</h1>
       <form onSubmit={handleSubmitPhoto} className="space-y-4">
         <div>
