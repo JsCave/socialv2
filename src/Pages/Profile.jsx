@@ -1,60 +1,51 @@
 import { Button } from '@heroui/react'
 import React, { useEffect, useMemo, useRef, useState } from 'react'
+import { updateSchema } from '../Schema/updateSchema'
+import { changeUserPasswordApi } from '../services/authServices'
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
 
 export default function Profile() {
-  const[counter1,setCounter1]=useState(0)
-  const[counter2,setCounter2]=useState(0)
-  //const [numOfChanges,setNumOfChanges]=useState(0)
-  const numOfChanges=useRef(0)
-  console.log(numOfChanges)
-  useEffect(()=>{
-   numOfChanges.current++
+  const[isLoading,setIsLoading]=useState(false)
+  const[errMsg,setErrMsg]=useState("")
+  const navigate=useNavigate()
+  const{isLoggedIn,setIsLoggedIn}=useContext(authContext)
+  
+  const{handleSubmit,register,formState:{errors}}=useForm({
+      defaultValues:{
+          password:"",
+          newPassword:"",
+      },
+      resolver: zodResolver(updateSchema),
+      mode:"onBlur"
   })
   
-  const isEven=useMemo(()=>{
-  return counter2 %2==0
-  },[counter2])
-  //useMemo can retur value directly unlike useEffect return function , also useMemo return value unlike useEffect is void function, also use memo work before mounting so will show user real value from beginning 
-    return (
-<div>
-<div className="grid gap-3 max-w-3xl mx-auto">
-<div className="grid grid-cols-3 text-center">
-<div className=''>
-    <h1>Counter 1: {counter1}</h1>
-    <div className='flex justify-center gap-2 mt-3'>
-  <Button color='success' onPress={()=>setCounter1(counter1+1)}>increase</Button>
-  <Button color='warning' onPress={()=>setCounter1(counter1-1)}>decrease</Button>
-  </div>
-  </div>
+     async function handleUpdatePassword(formData){
+      setIsLoading(true)
+        const data=await  changeUserPasswordApi(formData)
+        setIsLoading(false)
+     if(data.message=="success"){
 
-  <div className=''>
-    <h1>Number of changes:</h1>
-    <h1>{numOfChanges.current==-1?0:numOfChanges.current}</h1>
-  </div>
-
-  <div className=''>
-    <h1>Counter 2: {counter2}</h1>
-    <div className='flex justify-center gap-2 mt-3'>
-  <Button color='success' onPress={()=>setCounter2(counter2+1)}>increase</Button>
-  <Button color='warning' onPress={()=>setCounter2(counter2-1)}>decrease</Button>
-  </div>
-  </div>
-</div>
-      { 
-        /*<div className="grid gap-3 max-w-3xl mx-auto">
-        <div className="grid grid-cols-2 text-center">
-  <h1>Counter1: {counter1}</h1>
-  <Button onPress={()=>setCounter1(counter1+1)}>increase</Button>
-        </div>
-  
-        <div className="grid grid-cols-2 text-center">
-  <h1>Counter2: {counter2}</h1>
-  <h1>{isEven ? 'Even':'Odd'}</h1>
-  <Button onPress={()=>setCounter2(counter2+1)}>increase</Button>
-        </div>
-        </div>*/
+      }else{
+          setErrMsg(data)
       }
-      </div>
-    </div>    
+  console.log(data)
+  
+      }
+
+    return (
+
+<div>
+  <h1>Change Password</h1>
+<form className="inline-flex flex-col gap-5 items-center" onSubmit={handleSubmit(handleUpdatePassword)}>
+<Input isInvalid={Boolean(errors.password?.message)} errorMessage={errors.password?.message} label="Password" placeholder="Password" type="password" variant="bordered"  {...register('password')}/>
+<Input isInvalid={Boolean(errors.newPassword?.message)} errorMessage={errors.newPassword?.message} label="New Password" placeholder="New Password" type="password" variant="bordered"  {...register('newPassword')}/>
+<Button type='submit' isLoading={isLoading}  color="primary" variant="solid">Change Password</Button>
+{errMsg && <p className="bg-red-500 text-red-950">{errMsg}</p>}
+</form>
+
+
+  <h1>Upload Profile Photo</h1>
+</div>
   )
 }
