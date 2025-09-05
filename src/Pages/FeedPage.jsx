@@ -14,6 +14,11 @@ export default function FeedPage() {
   const { data, refetch, isFetching, isLoading, isError, error } = useQuery({
     queryKey: ["posts"],
     queryFn: getAllPostsApi,
+    onError: (error) => {
+      console.log(error.response)
+   //   if (error?.response?.status === 401) {
+      //  navigate("/login");
+      }
     //retry:3,
    // retryDelay:500,
   //  retryOnMount:true, // in case there is error if true will try to refetch automatically if false will not try
