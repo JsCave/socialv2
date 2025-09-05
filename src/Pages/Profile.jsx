@@ -62,7 +62,12 @@ const response=await changeUserPhotoApi(formData)
 }
 
 
+function handleFileChange(e){
+    if(e.target.files[0]){
+        setImageFile(e.target.files[0])
+    }
 
+}
 
 
     return (
@@ -70,7 +75,7 @@ const response=await changeUserPhotoApi(formData)
 <div>
   <h1>Change Password</h1>
   {successMsg && <p className="bg-green-300 text-green-950">{successMsg}</p>}
-<form className="inline-flex flex-col gap-5 items-center" onSubmit={handleSubmit(handleUpdatePassword)}>
+<form className="inline-flex flex-col gap-5 items-center" onSubmit={handleSubmit(handleSubmitPhoto)}>
 <Input isInvalid={Boolean(errors.password?.message)} errorMessage={errors.password?.message} label="Password" placeholder="Password" type="password" variant="bordered"  {...register('password')}/>
 <Input isInvalid={Boolean(errors.newPassword?.message)} errorMessage={errors.newPassword?.message} label="New Password" placeholder="New Password" type="password" variant="bordered"  {...register('newPassword')}/>
 <Button type='submit' isLoading={isLoading}  color="primary" variant="solid">Change Password</Button>
