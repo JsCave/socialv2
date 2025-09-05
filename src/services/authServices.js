@@ -53,3 +53,19 @@ throw e
     }
 
 }
+
+
+export async function changeUserPhotoApi(formData){
+    try{
+        
+        const {data}=await axios.put(baseUrl + "users/change-password",formData,{
+            headers:{
+                token:localStorage.getItem('token')
+            }
+        })
+        return data
+    }catch(e){
+throw e
+    }
+
+}
