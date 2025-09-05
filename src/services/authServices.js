@@ -42,7 +42,7 @@ return e.response ? e.response.data.error : e.message
 export async function changeUserPasswordApi(formData){
     try{
         
-        const {data}=await axios.patch(baseUrl + "/users/change-password",formData,{
+        const {data}=await axios.patch(baseUrl + "users/change-password",formData,{
             headers:{
                 token:localStorage.getItem('token')
             }
