@@ -8,8 +8,7 @@ import { useForm } from "react-hook-form";
 export default function Profile() {
   const[isLoading,setIsLoading]=useState(false)
   const[errMsg,setErrMsg]=useState("")
-  const navigate=useNavigate()
-  const{isLoggedIn,setIsLoggedIn}=useContext(authContext)
+
   
   const{handleSubmit,register,formState:{errors}}=useForm({
       defaultValues:{
