@@ -39,7 +39,7 @@ export default function Profile() {
 
 <div>
   <h1>Change Password</h1>
-  {successMsg && <p className="bg-green-300 text-green-950">{errMsg}</p>}
+  {successMsg && <p className="bg-green-300 text-green-950">{successMsg}</p>}
 <form className="inline-flex flex-col gap-5 items-center" onSubmit={handleSubmit(handleUpdatePassword)}>
 <Input isInvalid={Boolean(errors.password?.message)} errorMessage={errors.password?.message} label="Password" placeholder="Password" type="password" variant="bordered"  {...register('password')}/>
 <Input isInvalid={Boolean(errors.newPassword?.message)} errorMessage={errors.newPassword?.message} label="New Password" placeholder="New Password" type="password" variant="bordered"  {...register('newPassword')}/>
