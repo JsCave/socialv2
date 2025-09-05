@@ -4,11 +4,12 @@ import { updateSchema } from '../Schema/updateSchema'
 import { changeUserPasswordApi } from '../services/authServices'
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import {Button, Input} from "@heroui/react";
 
 export default function Profile() {
   const[isLoading,setIsLoading]=useState(false)
   const[errMsg,setErrMsg]=useState("")
-
+  const[successMsg,setSuccessMsg]=useState("")
   
   const{handleSubmit,register,formState:{errors}}=useForm({
       defaultValues:{
@@ -24,7 +25,7 @@ export default function Profile() {
         const data=await  changeUserPasswordApi(formData)
         setIsLoading(false)
      if(data.message=="success"){
-
+setSuccessMsg('You Changed Your Password Successfully')
       }else{
           setErrMsg(data)
       }
