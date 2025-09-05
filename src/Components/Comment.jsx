@@ -81,7 +81,7 @@ return(
   <p className="ps-12 pt-2">{comment.content}</p>
   }
 
-            <ModalComponent deleteFunction={handleDeleteComment} isOpen={isOpen} onOpenChange={onOpenChange}/>
+            <ModalComponent deleteFunction={handleDeleteComment} isOpen={isOpen} onOpenChange={onOpenChange} isPostDeleteing={isCommentDeleteing}/>
       </div>
 )
 }
