@@ -11,7 +11,6 @@ import DropDownCard from "./DropDownCard";
 import ModalComponent from "./ModalComponent";
 import { QueryClient, useMutation } from "@tanstack/react-query";
 import { client } from "../App";
-import LoadingPage from "../Pages/LoadingPage";
 
 export default function Post({ post, commentsLimit, handleDeletePost,setPostId }) {
   const [visibleComments, setVisibleComments] = useState(2);
@@ -21,7 +20,7 @@ export default function Post({ post, commentsLimit, handleDeletePost,setPostId }
   const { userData } = useContext(authContext);
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [isPostDeleteing, setIsPostDeleting] = useState(false);
-//console.log(post?)
+console.log(post)
   const{mutate:HandleAddComment,isPending}=   useMutation({
 mutationFn:()=>addCommentApi(commentContent,post.id),
 onSuccess:(data)=>{
@@ -44,17 +43,17 @@ console.log("create comments errors"+e)
     }, 200);
   };
 
-  if (!post || !post.user) return <LoadingPage/>;
+
   return (
     <div className="bg-white w-full rounded-md shadow-md h-auto py-3 px-3 my-5">
       <div className="w-full h-16 items-center flex justify-between">
         <CardHeader avatar={post.user.photo} header={post.user.name} subheader={post.createdAt} />
-        {post?.user._id === userData._id && <DropDownCard onOpen={onOpen} postId={post._id} setPostId={setPostId} />}
+        {post.user._id === userData._id && <DropDownCard onOpen={onOpen} postId={post._id} setPostId={setPostId} />}
       </div>
 
       <PostBody caption={post.body} image={post.image} />
       <PostFooter commentsNum={post.comments.length} />
-      <PostActions postId={post?.id} />
+      <PostActions postId={post.id} />
 
       <div className="flex my-3">
         <Input
