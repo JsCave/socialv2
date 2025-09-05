@@ -23,13 +23,15 @@ export default function Profile() {
      async function handleUpdatePassword(formData){
       setIsLoading(true)
         const data=await  changeUserPasswordApi(formData)
-        setIsLoading(false)
-     if(data.message=="success"){
-setSuccessMsg('You Changed Your Password Successfully')
-      }else{
-          setErrMsg(data)
-      }
-  console.log(data)
+        .then((res)=>{
+          console.log(res)
+          setSuccessMsg('You Changed Your Password Successfully')
+        })
+        .catch((e)=>{
+          console.log(e)
+        })
+        .finally(()=>{setIsLoading(false)})
+        
   
       }
 
