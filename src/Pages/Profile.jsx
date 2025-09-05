@@ -25,9 +25,11 @@ export default function Profile() {
         const data=await  changeUserPasswordApi(formData)
         .then((res)=>{
           console.log(res)
+          setErrMsg('')
           setSuccessMsg('You Changed Your Password Successfully')
         })
         .catch((e)=>{
+          setSuccessMsg('')
           setErrMsg(e.response.data.error)
         })
         .finally(()=>{setIsLoading(false)})
