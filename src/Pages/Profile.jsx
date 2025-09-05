@@ -28,7 +28,7 @@ export default function Profile() {
           setSuccessMsg('You Changed Your Password Successfully')
         })
         .catch((e)=>{
-          console.log(e)
+          errMsg(e.response.data.error)
         })
         .finally(()=>{setIsLoading(false)})
         
@@ -39,11 +39,12 @@ export default function Profile() {
 
 <div>
   <h1>Change Password</h1>
+  {successMsg && <p className="bg-green-300 text-green-950">{errMsg}</p>}
 <form className="inline-flex flex-col gap-5 items-center" onSubmit={handleSubmit(handleUpdatePassword)}>
 <Input isInvalid={Boolean(errors.password?.message)} errorMessage={errors.password?.message} label="Password" placeholder="Password" type="password" variant="bordered"  {...register('password')}/>
 <Input isInvalid={Boolean(errors.newPassword?.message)} errorMessage={errors.newPassword?.message} label="New Password" placeholder="New Password" type="password" variant="bordered"  {...register('newPassword')}/>
 <Button type='submit' isLoading={isLoading}  color="primary" variant="solid">Change Password</Button>
-{errMsg && <p className="bg-red-500 text-red-950">{errMsg}</p>}
+{errMsg && <p className="bg-red-300 text-red-950">{errMsg}</p>}
 </form>
 
 
