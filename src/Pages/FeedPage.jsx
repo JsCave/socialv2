@@ -15,7 +15,7 @@ export default function FeedPage() {
     queryKey: ["posts"],
     queryFn: getAllPostsApi,
     onError: (error) => {
-      console.log(error.response)
+      console.log(error)
    //   if (error?.response?.status === 401) {
       //  navigate("/login");
       }
