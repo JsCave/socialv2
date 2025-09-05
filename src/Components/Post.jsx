@@ -22,7 +22,7 @@ export default function Post({ post, commentsLimit, handleDeletePost,setPostId }
   const [isPostDeleteing, setIsPostDeleting] = useState(false);
 console.log(post)
   const{mutate:HandleAddComment,isPending}=   useMutation({
-mutationFn:()=>addCommentApi(commentContent,post.id),
+mutationFn:()=>addCommentApi(commentContent,post._id),
 onSuccess:(data)=>{
   //console.log("create Comment Data"+data)
   setCommentContent('')
@@ -53,7 +53,7 @@ console.log("create comments errors"+e)
 
       <PostBody caption={post.body} image={post.image} />
       <PostFooter commentsNum={post.comments.length} />
-      <PostActions postId={post.id} />
+      <PostActions postId={post._id} />
 
       <div className="flex my-3">
         <Input

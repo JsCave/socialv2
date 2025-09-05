@@ -75,7 +75,7 @@ return (
           <Post
             setPostId={setPostId}
             handleDeletePost={handleDeletePost}
-            key={post.id}
+            key={post._id}
             post={post}
             commentsLimit={1}
           />
