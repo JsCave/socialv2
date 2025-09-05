@@ -28,7 +28,7 @@ export default function Profile() {
           setSuccessMsg('You Changed Your Password Successfully')
         })
         .catch((e)=>{
-          errMsg(e.response.data.error)
+          setErrMsg(e.response.data.error)
         })
         .finally(()=>{setIsLoading(false)})
         
