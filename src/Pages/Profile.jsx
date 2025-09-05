@@ -1,10 +1,10 @@
-import { Button } from '@heroui/react'
+import { Button, Input } from '@heroui/react'
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { updateSchema } from '../Schema/updateSchema'
 import { changeUserPasswordApi } from '../services/authServices'
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import {Button, Input} from "@heroui/react";
+
 
 export default function Profile() {
   const[isLoading,setIsLoading]=useState(false)
