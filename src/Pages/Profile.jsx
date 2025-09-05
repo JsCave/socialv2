@@ -4,6 +4,7 @@ import { updateSchema } from '../Schema/updateSchema'
 import { changeUserPasswordApi, changeUserPhotoApi } from '../services/authServices'
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { authContext } from './../contexts/authContext';
 
 
 export default function Profile() {
